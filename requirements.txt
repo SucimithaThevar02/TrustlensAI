@@ -1,0 +1,16 @@
+Flask
+Werkzeug
+pandas
+numpy
+scikit-learn
+joblib
+langdetect
+deep-translator
+Pillow
+pytesseract
+openai-whisper
+torch
+gTTS
+pydub
+requests
+beautifulsoup4
