@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fake Link Detection - TrustLens AI</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #eef5ff;
+    color: #172554;
+}
+
+/* ================= NAVBAR ================= */
+
+header {
+    min-height: 72px;
+    padding: 12px 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #dbeafe;
+
+    box-shadow: 0 2px 12px rgba(30, 64, 175, 0.08);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 21px;
+    font-weight: 700;
+
+    color: #172554;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 20px;
+}
+
+.logo span {
+    color: #2563eb;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+nav a {
+    color: #475569;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #2563eb;
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 88%;
+    max-width: 850px;
+    margin: 55px auto;
+}
+
+/* ================= TITLE ================= */
+
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title h1 {
+    color: #1d4ed8;
+    font-size: 40px;
+    margin: 0 0 12px;
+}
+
+.title p {
+    color: #64748b;
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ================= CARD ================= */
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 22px;
+    border: 1px solid #dbeafe;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #334155;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    background: #f8fbff;
+    color: #172554;
+    font-size: 15px;
+    outline: none;
+    margin-bottom: 22px;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px #dbeafe;
+}
+
+button {
+    width: 100%;
+    margin-top: 5px;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+/* ================= NOTE ================= */
+
+.note {
+    margin-top: 20px;
+    padding: 14px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 10px;
+    color: #9a3412;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* ================= RESULT ================= */
+
+.result {
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 16px;
+    background: #f8fbff;
+    border: 1px solid #dbeafe;
+}
+
+.result h2 {
+    margin-top: 0;
+    color: #172554;
+    margin-bottom: 20px;
+}
+
+.status {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.safe {
+    color: #16a34a;
+}
+
+.caution {
+    color: #d97706;
+}
+
+.danger {
+    color: #dc2626;
+}
+
+.result-info {
+    margin: 9px 0;
+    color: #475569;
+    font-size: 15px;
+}
+
+.result-info strong {
+    color: #172554;
+}
+
+.links {
+    padding: 12px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    word-break: break-all;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    color: #2563eb;
+}
+
+.reasons {
+    margin-top: 15px;
+}
+
+.reason {
+    padding: 10px;
+    margin: 7px 0;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 8px;
+    color: #9a3412;
+}
+
+.no-reason {
+    padding: 10px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.recommendation {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1e40af;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 900px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94%;
+        margin: 35px auto;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .title h1 {
+        font-size: 32px;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+<div class="logo">
+
+    <div class="logo-icon">
+        🛡️
+    </div>
+
+    <div>
+        Trust<span>Lens</span> AI
+    </div>
+
+</div>
+
+<nav>
+
+    <a href="/">
+        Home
+    </a>
+
+    <a href="/dashboard">
+        Dashboard
+    </a>
+
+    <a href="/about">
+        About
+    </a>
+
+    <a href="/awareness">
+        Scam Awareness
+    </a>
+
+    <a href="/link-check">
+        Fake Link Detection
+    </a>
+
+    <a href="/report">
+        Report Scam
+    </a>
+
+    <a href="/contact">
+        Contact
+    </a>
+
+</nav>
+
+
+</header>
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+```
+<div class="title">
+
+    <h1>🔗 Fake Link Detection</h1>
+
+    <p>
+        Check suspicious links for common warning signs before clicking them.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <form action="/link-check" method="POST">
+
+        <label>Enter Suspicious Link</label>
+
+        <input
+            type="text"
+            name="link"
+            value="{{ link }}"
+            placeholder="Example: https://example.com/login"
+            required
+        >
+
+        <label>Select Link Category</label>
+
+        <select name="category" required>
+
+            <option value="">Select category</option>
+
+            <option value="Bank"
+                {% if category == "Bank" %}selected{% endif %}>
+                🏦 Bank
+            </option>
+
+            <option value="UPI"
+                {% if category == "UPI" %}selected{% endif %}>
+                💳 UPI / Payment
+            </option>
+
+            <option value="Shopping"
+                {% if category == "Shopping" %}selected{% endif %}>
+                🛒 Shopping
+            </option>
+
+            <option value="Job"
+                {% if category == "Job" %}selected{% endif %}>
+                💼 Job / Employment
+            </option>
+
+            <option value="Delivery"
+                {% if category == "Delivery" %}selected{% endif %}>
+                📦 Delivery
+            </option>
+
+            <option value="Government"
+                {% if category == "Government" %}selected{% endif %}>
+                🏛️ Government
+            </option>
+
+            <option value="Social Media"
+                {% if category == "Social Media" %}selected{% endif %}>
+                📱 Social Media
+            </option>
+
+            <option value="Prize/Lottery"
+                {% if category == "Prize/Lottery" %}selected{% endif %}>
+                🎁 Prize / Lottery
+            </option>
+
+            <option value="Other"
+                {% if category == "Other" %}selected{% endif %}>
+                📌 Other
+            </option>
+
+        </select>
+
+        <label>Where did you receive this link?</label>
+
+        <select name="source" required>
+
+            <option value="">Select source</option>
+
+            <option value="Email"
+                {% if source == "Email" %}selected{% endif %}>
+                📧 Email
+            </option>
+
+            <option value="SMS"
+                {% if source == "SMS" %}selected{% endif %}>
+                💬 SMS
+            </option>
+
+            <option value="WhatsApp"
+                {% if source == "WhatsApp" %}selected{% endif %}>
+                🟢 WhatsApp
+            </option>
+
+            <option value="Social Media"
+                {% if source == "Social Media" %}selected{% endif %}>
+                📱 Social Media
+            </option>
+
+            <option value="Website"
+                {% if source == "Website" %}selected{% endif %}>
+                🌐 Website
+            </option>
+
+            <option value="Other"
+                {% if source == "Other" %}selected{% endif %}>
+                📌 Other
+            </option>
+
+        </select>
+
+        <button type="submit">
+            🔎 Check Link
+        </button>
+
+    </form>
+
+    <div class="note">
+        ⚠️ Do not click a suspicious link just to test it.
+        Paste the URL here instead.
+    </div>
+
+    {% if result %}
+
+    <div class="result">
+
+        <h2>Detection Result</h2>
+
+        {% if category %}
+
+        <div class="result-info">
+            <strong>Category:</strong>
+            {{ category }}
+        </div>
+
+        {% endif %}
+
+        {% if source %}
+
+        <div class="result-info">
+            <strong>Received From:</strong>
+            {{ source }}
+        </div>
+
+        {% endif %}
+
+        <div class="
+            status
+            {% if result.risk == 'Low' %}
+                safe
+            {% elif result.risk == 'Medium' %}
+                caution
+            {% else %}
+                danger
+            {% endif %}
+        ">
+
+            {% if result.risk == 'Low' %}
+                🟢 Low Risk
+            {% elif result.risk == 'Medium' %}
+                🟠 Medium Risk
+            {% else %}
+                🔴 High Risk
+            {% endif %}
+
+        </div>
+
+        <div class="result-info">
+
+            <strong>Detection:</strong>
+            {{ result.status }}
+
+        </div>
+
+        <div class="result-info">
+
+            <strong>Risk Score:</strong>
+            {{ result.score }}
+
+        </div>
+
+        {% if result.links %}
+
+        <div class="result-info">
+
+            <strong>Link detected:</strong>
+
+        </div>
+
+        {% for detected_link in result.links %}
+
+        <div class="links">
+            {{ detected_link }}
+        </div>
+
+        {% endfor %}
+
+        {% endif %}
+
+        <div class="result-info">
+
+            <strong>Warning Signs:</strong>
+
+        </div>
+
+        <div class="reasons">
+
+            {% if result.reasons %}
+
+                {% for reason in result.reasons %}
+
+                <div class="reason">
+                    {{ reason }}
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="no-reason">
+                    ✅ No suspicious characteristics detected.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <div class="recommendation">
+
+            <strong>Recommendation:</strong>
+            {{ result.recommendation }}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+</main>
+
+</body>
+
+</html>

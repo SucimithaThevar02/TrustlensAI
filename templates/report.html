@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Report Scam - TrustLens AI</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        background: #eef5ff;
+        color: #172554;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    header {
+        min-height: 72px;
+        padding: 12px 7%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background: #ffffff;
+
+        border-bottom: 1px solid #dbeafe;
+
+        box-shadow: 0 2px 12px rgba(30, 64, 175, 0.08);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        font-size: 21px;
+        font-weight: 700;
+
+        color: #172554;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 11px;
+
+        background: #2563eb;
+
+        color: white;
+
+        font-size: 20px;
+    }
+
+    .logo span {
+        color: #2563eb;
+    }
+
+    nav {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    nav a {
+        color: #475569;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    nav a:hover {
+        color: #2563eb;
+    }
+
+    /* ================= MAIN CONTAINER ================= */
+
+    .container {
+        max-width: 800px;
+        margin: 55px auto;
+        padding: 0 20px;
+    }
+
+    /* ================= TITLE ================= */
+
+    .title {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .title h1 {
+        color: #1d4ed8;
+        font-size: 40px;
+        margin-bottom: 12px;
+    }
+
+    .title p {
+        color: #64748b;
+        font-size: 17px;
+        line-height: 1.6;
+    }
+
+    /* ================= INFORMATION BOX ================= */
+
+    .info-box {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        padding: 18px;
+        border-radius: 14px;
+        margin-bottom: 25px;
+        color: #1e40af;
+        line-height: 1.6;
+    }
+
+    /* ================= FORM CARD ================= */
+
+    .form-card {
+        background: #ffffff;
+        padding: 32px;
+        border-radius: 22px;
+        border: 1px solid #dbeafe;
+        box-shadow: 0 8px 30px rgba(37, 99, 235, 0.08);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #334155;
+        font-weight: 600;
+    }
+
+    textarea,
+    select {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 22px;
+        background: #f8fbff;
+        color: #172554;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        outline: none;
+        font-size: 14px;
+    }
+
+    textarea {
+        min-height: 140px;
+        resize: vertical;
+    }
+
+    textarea:focus,
+    select:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px #dbeafe;
+    }
+
+    /* ================= BUTTON ================= */
+
+    button {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 12px;
+        background: #2563eb;
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #1d4ed8;
+    }
+
+    /* ================= SAFETY NOTE ================= */
+
+    .note {
+        margin-top: 20px;
+        padding: 14px;
+        background: #fff7ed;
+        border: 1px solid #fed7aa;
+        border-radius: 10px;
+        color: #9a3412;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .bottom-text {
+        text-align: center;
+        margin-top: 25px;
+        color: #64748b;
+        font-size: 13px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 900px) {
+
+        header {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        nav {
+            justify-content: center;
+        }
+
+    }
+
+    @media (max-width: 600px) {
+
+        nav {
+            gap: 12px;
+        }
+
+        nav a {
+            font-size: 13px;
+        }
+
+        .container {
+            margin: 35px auto;
+        }
+
+        .form-card {
+            padding: 22px;
+        }
+
+        .title h1 {
+            font-size: 32px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+
+<div class="logo">
+
+    <div class="logo-icon">
+        🛡️
+    </div>
+
+    <div>
+        Trust<span>Lens</span> AI
+    </div>
+
+</div>
+
+<nav>
+
+    <a href="/">
+        Home
+    </a>
+
+    <a href="/dashboard">
+        Dashboard
+    </a>
+
+    <a href="/about">
+        About
+    </a>
+
+    <a href="/awareness">
+        Scam Awareness
+    </a>
+
+    <a href="/link-check">
+        Fake Link Detection
+    </a>
+
+    <a href="/report">
+        Report Scam
+    </a>
+
+    <a href="/contact">
+        Contact
+    </a>
+
+</nav>
+
+
+</header>
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+```
+<!-- TITLE -->
+
+<div class="title">
+
+    <h1>🚩 Report a Scam</h1>
+
+    <p>
+        Found a suspicious message, call or online fraud attempt?
+        Help improve digital safety by reporting it.
+    </p>
+
+</div>
+
+<!-- INFORMATION -->
+
+<div class="info-box">
+
+    🛡️ <strong>Why report?</strong>
+
+    <br>
+
+    Your report helps identify common scam patterns
+    and supports better digital fraud awareness.
+
+    <br><br>
+
+    You do not need to share passwords, OTPs
+    or other confidential information.
+
+</div>
+
+<!-- REPORT FORM -->
+
+<div class="form-card">
+
+    <form action="/report" method="POST">
+
+        <!-- MESSAGE -->
+
+        <label>
+            🚩 Scam Message
+        </label>
+
+        <textarea
+            name="message"
+            placeholder="Paste the suspicious message here..."
+            required
+        ></textarea>
+
+        <!-- CATEGORY -->
+
+        <label>
+            🏷️ Scam Category
+        </label>
+
+        <select name="category">
+
+            <option value="">
+                Select a category
+            </option>
+
+            <option value="Banking">
+                Banking Scam
+            </option>
+
+            <option value="UPI">
+                UPI / Payment Scam
+            </option>
+
+            <option value="OTP">
+                OTP Scam
+            </option>
+
+            <option value="KYC">
+                KYC Scam
+            </option>
+
+            <option value="Prize">
+                Prize / Lottery Scam
+            </option>
+
+            <option value="Job">
+                Fake Job Scam
+            </option>
+
+            <option value="Investment">
+                Investment Scam
+            </option>
+
+            <option value="Phishing">
+                Phishing / Fake Link
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+        <!-- SOURCE -->
+
+        <label>
+            📱 Where did you receive it?
+        </label>
+
+        <select name="source">
+
+            <option value="">
+                Select source
+            </option>
+
+            <option value="SMS">
+                SMS
+            </option>
+
+            <option value="WhatsApp">
+                WhatsApp
+            </option>
+
+            <option value="Email">
+                Email
+            </option>
+
+            <option value="Social Media">
+                Social Media
+            </option>
+
+            <option value="Phone Call">
+                Phone Call
+            </option>
+
+            <option value="Website">
+                Website
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+        <!-- SUBMIT BUTTON -->
+
+        <button type="submit">
+
+            🚩 Submit Scam Report
+
+        </button>
+
+    </form>
+
+    <!-- WARNING -->
+
+    <div class="note">
+
+        ⚠️ <strong>Safety reminder:</strong>
+
+        Never enter your password, OTP, ATM PIN,
+        bank PIN or other confidential credentials
+        in this form.
+
+    </div>
+
+</div>
+
+<div class="bottom-text">
+
+    🔒 Your report is intended for scam-awareness
+    and detection purposes.
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>

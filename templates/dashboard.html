@@ -1,0 +1,2604 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TrustLens AI - Dashboard</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        body {
+            background: #f3f7ff;
+            color: #172554;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            min-height: 72px;
+            padding: 12px 7%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #dbeafe;
+            box-shadow:
+                0 2px 12px rgba(30, 64, 175, 0.08);
+        }
+
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 21px;
+            font-weight: 700;
+            color: #172554;
+        }
+
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: #2563eb;
+            color: white;
+            font-size: 20px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+
+        .active {
+            color: #2563eb !important;
+            font-weight: bold !important;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 88%;
+            max-width: 1250px;
+            margin: 40px auto;
+        }
+
+
+        .welcome {
+            margin-bottom: 28px;
+        }
+
+
+        .welcome h1 {
+            font-size: 38px;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+
+
+        .welcome p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+
+        /* ================= STATUS ================= */
+
+        .status-card {
+            background: white;
+            border-radius: 22px;
+            padding: 25px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow:
+                0 8px 30px rgba(37,99,235,0.08);
+            margin-bottom: 25px;
+        }
+
+
+        .status-left h2 {
+            margin-bottom: 8px;
+            color: #1e3a8a;
+        }
+
+
+        .status-left p {
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+
+        .status-badge {
+            padding: 12px 22px;
+            border-radius: 30px;
+            background: #dcfce7;
+            color: #166534;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+
+        /* ================= STAT CARDS ================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+
+        .stat-card {
+            background: white;
+            padding: 22px;
+            border-radius: 18px;
+            box-shadow:
+                0 6px 25px rgba(0,0,0,0.05);
+            transition: 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 10px 28px rgba(37,99,235,0.12);
+        }
+
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            right: -25px;
+            top: -25px;
+            border-radius: 50%;
+            background: #eff6ff;
+        }
+
+
+        .stat-icon {
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+
+        .stat-card h3 {
+            font-size: 30px;
+            color: #1d4ed8;
+            margin-bottom: 5px;
+        }
+
+
+        .stat-card p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+
+        /* ================= GRID ================= */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 22px;
+            margin-bottom: 25px;
+        }
+
+
+        .panel {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow:
+                0 6px 25px rgba(0,0,0,0.05);
+        }
+
+
+        .section-title {
+            font-size: 21px;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
+
+
+        .panel-subtitle {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: -14px;
+            margin-bottom: 20px;
+        }
+
+
+        /* ================= ACTIVITY CHART ================= */
+
+        .chart {
+            height: 250px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            gap: 20px;
+            padding: 15px 10px 0;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+
+        .chart-column {
+            height: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+        }
+
+
+        .chart-value {
+            font-size: 13px;
+            color: #475569;
+            font-weight: bold;
+        }
+
+
+        .chart-bar {
+            width: 55px;
+            min-height: 5px;
+            background: #2563eb;
+            border-radius: 9px 9px 0 0;
+            transition: height 0.7s ease;
+        }
+
+
+        .chart-column:nth-child(2) .chart-bar {
+            background: #60a5fa;
+        }
+
+
+        .chart-column:nth-child(3) .chart-bar {
+            background: #818cf8;
+        }
+
+
+        .chart-column:nth-child(4) .chart-bar {
+            background: #f59e0b;
+        }
+
+
+        .chart-label {
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+        }
+
+
+        /* ================= RISK PANEL ================= */
+
+        .risk-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            min-height: 215px;
+        }
+
+
+        .risk-circle {
+            width: 155px;
+            height: 155px;
+            border-radius: 50%;
+            background:
+                conic-gradient(
+                    #f59e0b 0deg,
+                    #f59e0b 120deg,
+                    #e2e8f0 120deg,
+                    #e2e8f0 360deg
+                );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+
+        .risk-circle::before {
+            content: "";
+            width: 112px;
+            height: 112px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+
+        .risk-number {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+
+        .risk-number strong {
+            display: block;
+            font-size: 30px;
+            color: #1e40af;
+        }
+
+
+        .risk-number span {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+
+        .risk-info {
+            flex: 1;
+        }
+
+
+        .risk-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+
+        .risk-item:last-child {
+            border-bottom: none;
+        }
+
+
+        .risk-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+
+        .high {
+            background: #ef4444;
+        }
+
+
+        .medium {
+            background: #f59e0b;
+        }
+
+
+        .low {
+            background: #22c55e;
+        }
+
+
+        .risk-item span {
+            color: #475569;
+            font-size: 14px;
+        }
+
+
+        .risk-item strong {
+            color: #1e3a8a;
+        }
+
+
+        /* ================= SCAM TYPE ================= */
+
+        .scam-types {
+            margin-top: 10px;
+        }
+
+
+        .type-row {
+            margin-bottom: 18px;
+        }
+
+
+        .type-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px;
+        }
+
+
+        .type-name {
+            font-size: 14px;
+            color: #475569;
+        }
+
+
+        .type-value {
+            font-size: 13px;
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+
+        .type-track {
+            height: 11px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+
+        .type-fill {
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.7s ease;
+        }
+
+
+        .banking {
+            background: #2563eb;
+        }
+
+
+        .job {
+            background: #6366f1;
+        }
+
+
+        .lottery {
+            background: #f59e0b;
+        }
+
+
+        .upi {
+            background: #14b8a6;
+        }
+
+
+        .other {
+            background: #94a3b8;
+        }
+
+
+        .coming-soon {
+            background: #eff6ff;
+            border: 1px dashed #93c5fd;
+            border-radius: 14px;
+            padding: 18px;
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 13px;
+            margin-top: 18px;
+        }
+
+
+        /* ================= RECENT ACTIVITY ================= */
+
+        .activity {
+            min-height: 280px;
+        }
+
+
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+
+        .activity-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        .activity-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #eff6ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .activity-name {
+            color: #334155;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+
+        .activity-time {
+            color: #94a3b8;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+
+        .empty {
+            color: #94a3b8;
+            text-align: center;
+            padding: 50px 10px;
+            line-height: 1.6;
+        }
+
+
+        /* ================= USAGE SUMMARY ================= */
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+
+        .summary-box {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 18px;
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .summary-box span {
+            display: block;
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+
+        .summary-box strong {
+            font-size: 24px;
+            color: #1e40af;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width: 950px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+
+            .nav-links {
+                justify-content: center;
+            }
+
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .container {
+                width: 92%;
+            }
+
+
+            .welcome h1 {
+                font-size: 28px;
+            }
+
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+
+            .status-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+            }
+
+
+            .chart-bar {
+                width: 35px;
+            }
+
+
+            .risk-container {
+                flex-direction: column;
+            }
+
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+
+            🛡️
+
+        </div>
+
+        TrustLens AI
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="home.html">
+
+            Home
+
+        </a>
+
+
+        <a href="dashboard.html" class="active">
+
+            Dashboard
+
+        </a>
+
+
+        <a href="awareness.html">
+
+            Scam Awareness
+
+        </a>
+
+
+        <a href="link_check.html">
+
+            Fake Link Detection
+
+        </a>
+
+        <a href="report.html">
+
+            Report Scam
+
+        </a>
+
+
+        <a href="contact.html">
+
+            Contact
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+
+    <!-- ================= WELCOME ================= -->
+
+    <div class="welcome">
+
+        <h1>
+
+            Your Safety Dashboard 🛡️
+
+        </h1>
+
+
+        <p>
+
+            Understand your scam detection activity through simple visual insights.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- ================= CURRENT STATUS ================= -->
+
+    <div class="status-card">
+
+
+        <div class="status-left">
+
+            <h2>
+
+                Current Safety Status
+
+            </h2>
+
+
+            <p id="statusText">
+
+                No suspicious activity has been recorded yet.
+
+            </p>
+
+        </div>
+
+
+        <div class="status-badge" id="statusBadge">
+
+            ✓ No Alerts
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <div class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                🔍
+
+            </div>
+
+
+            <h3 id="messageCount">
+
+                0
+
+            </h3>
+
+
+            <p>
+
+                Messages Checked
+
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                🔗
+
+            </div>
+
+
+            <h3 id="linkCount">
+
+                0
+
+            </h3>
+
+
+            <p>
+
+                Links Checked
+
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                🚩
+
+            </div>
+
+
+            <h3 id="reportCount">
+
+                0
+
+            </h3>
+
+
+            <p>
+
+                Scams Reported
+
+            </p>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+
+                ⚠️
+
+            </div>
+
+
+            <h3 id="alertCount">
+
+                0
+
+            </h3>
+
+
+            <p>
+
+                Safety Alerts
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= MAIN ANALYTICS ================= -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- ================= ACTIVITY CHART ================= -->
+
+        <div class="panel">
+
+
+            <h2 class="section-title">
+
+                📊 Detection Activity
+
+            </h2>
+
+
+            <p class="panel-subtitle">
+
+                Overview of your TrustLens AI usage
+
+            </p>
+
+
+            <div class="chart">
+
+
+                <div class="chart-column">
+
+
+                    <span
+
+                        class="chart-value"
+
+                        id="chartMessageValue">
+
+                        0
+
+                    </span>
+
+
+                    <div
+
+                        class="chart-bar"
+
+                        id="chartMessageBar"
+
+                        style="height:5px;">
+
+                    </div>
+
+
+                    <span class="chart-label">
+
+                        Messages
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="chart-column">
+
+
+                    <span
+
+                        class="chart-value"
+
+                        id="chartLinkValue">
+
+                        0
+
+                    </span>
+
+
+                    <div
+
+                        class="chart-bar"
+
+                        id="chartLinkBar"
+
+                        style="height:5px;">
+
+                    </div>
+
+
+                    <span class="chart-label">
+
+                        Links
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="chart-column">
+
+
+                    <span
+
+                        class="chart-value"
+
+                        id="chartReportValue">
+
+                        0
+
+                    </span>
+
+
+                    <div
+
+                        class="chart-bar"
+
+                        id="chartReportBar"
+
+                        style="height:5px;">
+
+                    </div>
+
+
+                    <span class="chart-label">
+
+                        Reports
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="chart-column">
+
+
+                    <span
+
+                        class="chart-value"
+
+                        id="chartAlertValue">
+
+                        0
+
+                    </span>
+
+
+                    <div
+
+                        class="chart-bar"
+
+                        id="chartAlertBar"
+
+                        style="height:5px;">
+
+                    </div>
+
+
+                    <span class="chart-label">
+
+                        Alerts
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= RISK OVERVIEW ================= -->
+
+        <div class="panel">
+
+
+            <h2 class="section-title">
+
+                🚨 Risk Overview
+
+            </h2>
+
+
+            <p class="panel-subtitle">
+
+                Based on detected safety alerts
+
+            </p>
+
+
+            <div class="risk-container">
+
+
+                <div class="risk-circle" id="riskCircle">
+
+
+                    <div class="risk-number">
+
+
+                        <strong id="riskPercentage">
+
+                            0%
+
+                        </strong>
+
+
+                        <span>
+
+                            Alert Rate
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="risk-info">
+
+
+                    <div class="risk-item">
+
+                        <span>
+
+                            <i class="risk-dot high"></i>
+
+                            High Risk
+
+                        </span>
+
+
+                        <strong id="highRisk">
+
+                            0
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="risk-item">
+
+                        <span>
+
+                            <i class="risk-dot medium"></i>
+
+                            Attention
+
+                        </span>
+
+
+                        <strong id="mediumRisk">
+
+                            0
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="risk-item">
+
+                        <span>
+
+                            <i class="risk-dot low"></i>
+
+                            Safe Checks
+
+                        </span>
+
+
+                        <strong id="lowRisk">
+
+                            0
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= SECOND ANALYTICS ROW ================= -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- ================= SCAM TYPE ANALYSIS ================= -->
+
+        <div class="panel">
+
+
+            <h2 class="section-title">
+
+                🎯 Scam Type Analysis
+
+            </h2>
+
+
+            <p class="panel-subtitle">
+
+                Which scam categories are appearing most often?
+
+            </p>
+
+
+            <div class="scam-types">
+
+
+                <!-- BANKING -->
+
+                <div class="type-row">
+
+
+                    <div class="type-header">
+
+                        <span class="type-name">
+
+                            🏦 Banking / KYC
+
+                        </span>
+
+
+                        <span
+
+                            class="type-value"
+
+                            id="bankingValue">
+
+                            0
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="type-track">
+
+                        <div
+
+                            class="type-fill banking"
+
+                            id="bankingBar"
+
+                            style="width:0%">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- JOB -->
+
+                <div class="type-row">
+
+
+                    <div class="type-header">
+
+                        <span class="type-name">
+
+                            💼 Job / Internship
+
+                        </span>
+
+
+                        <span
+
+                            class="type-value"
+
+                            id="jobValue">
+
+                            0
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="type-track">
+
+                        <div
+
+                            class="type-fill job"
+
+                            id="jobBar"
+
+                            style="width:0%">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LOTTERY -->
+
+                <div class="type-row">
+
+
+                    <div class="type-header">
+
+                        <span class="type-name">
+
+                            🎁 Lottery / Prize
+
+                        </span>
+
+
+                        <span
+
+                            class="type-value"
+
+                            id="lotteryValue">
+
+                            0
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="type-track">
+
+                        <div
+
+                            class="type-fill lottery"
+
+                            id="lotteryBar"
+
+                            style="width:0%">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- UPI -->
+
+                <div class="type-row">
+
+
+                    <div class="type-header">
+
+                        <span class="type-name">
+
+                            💳 UPI / Payment
+
+                        </span>
+
+
+                        <span
+
+                            class="type-value"
+
+                            id="upiValue">
+
+                            0
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="type-track">
+
+                        <div
+
+                            class="type-fill upi"
+
+                            id="upiBar"
+
+                            style="width:0%">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="coming-soon">
+
+                📌 <b>Category analytics:</b>
+
+                Categories are updated automatically whenever
+
+                TrustLens detects a scam message.
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ================= USAGE SUMMARY ================= -->
+
+        <div class="panel">
+
+
+            <h2 class="section-title">
+
+                📈 Safety Activity Summary
+
+            </h2>
+
+
+            <p class="panel-subtitle">
+
+                Quick view of your detection activity
+
+            </p>
+
+
+            <div class="summary-grid">
+
+
+                <div class="summary-box">
+
+                    <span>
+
+                        Total Checks
+
+                    </span>
+
+
+                    <strong id="totalChecks">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+
+                        Alert Rate
+
+                    </span>
+
+
+                    <strong id="summaryAlertRate">
+
+                        0%
+
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <span>
+
+                        Reports
+
+                    </span>
+
+
+                    <strong id="summaryReports">
+
+                        0
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="summary-box">
+
+                <span>
+
+                    Most Active Detection Method
+
+                </span>
+
+
+                <strong id="mostUsed">
+
+                    —
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= RECENT ACTIVITY ================= -->
+
+    <div class="panel activity">
+
+
+        <h2 class="section-title">
+
+            🕒 Recent Detection Activity
+
+        </h2>
+
+
+        <p class="panel-subtitle">
+
+            Latest actions performed on TrustLens AI
+
+        </p>
+
+
+        <div id="activityList">
+
+
+            <div class="empty">
+
+                No activity yet.<br>
+
+                Start by checking a suspicious message or link.
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+/* ==========================================================
+
+   TRUSTLENS AI DASHBOARD
+
+   ==========================================================
+
+   Data source:
+
+   /dashboard-data
+
+   ========================================================== */
+
+
+async function loadDashboard() {
+
+
+    try {
+
+
+        const response = await fetch(
+
+            "/dashboard-data"
+
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+
+                "Could not load dashboard data."
+
+            );
+
+        }
+
+
+        const data = await response.json();
+
+
+        /* ==============================
+
+           GET DATA
+
+        ============================== */
+
+
+        const messages = Number(
+
+            data.messages_checked || 0
+
+        );
+
+
+        const links = Number(
+
+            data.links_checked || 0
+
+        );
+
+
+        const reports = Number(
+
+            data.reports || 0
+
+        );
+
+
+        const alerts = Number(
+
+            data.alerts || 0
+
+        );
+
+
+        const translations = Number(
+
+            data.translations || 0
+
+        );
+
+
+        /* ==================================================
+
+           SCAM CATEGORY DATA
+
+           ==================================================
+
+           Supports:
+
+           data.scam_categories
+
+           OR
+
+           data.categories
+
+           OR
+
+           data.scam_types
+
+        ================================================== */
+
+
+        const categoryData =
+
+            data.scam_categories ||
+
+            data.categories ||
+
+            data.scam_types ||
+
+            {};
+
+
+        /* ==============================
+
+           GET CATEGORY COUNTS
+
+        ============================== */
+
+
+        const banking = Number(
+
+            categoryData.banking ||
+
+            categoryData.Banking ||
+
+            categoryData["Banking / KYC"] ||
+
+            categoryData["banking_kyc"] ||
+
+            0
+
+        );
+
+
+        const job = Number(
+
+            categoryData.job ||
+
+            categoryData.Job ||
+
+            categoryData["Job / Internship"] ||
+
+            categoryData["job_internship"] ||
+
+            0
+
+        );
+
+
+        const lottery = Number(
+
+            categoryData.lottery ||
+
+            categoryData.Lottery ||
+
+            categoryData["Lottery / Prize"] ||
+
+            categoryData["lottery_prize"] ||
+
+            0
+
+        );
+
+
+        const upi = Number(
+
+            categoryData.upi ||
+
+            categoryData.UPI ||
+
+            categoryData["UPI / Payment"] ||
+
+            categoryData["upi_payment"] ||
+
+            0
+
+        );
+
+
+        /* ==============================
+
+           CATEGORY TOTAL
+
+        ============================== */
+
+
+        const categoryTotal =
+
+            banking +
+
+            job +
+
+            lottery +
+
+            upi;
+
+
+        /* ==============================
+
+           CATEGORY PERCENTAGES
+
+        ============================== */
+
+
+        let bankingPercent = 0;
+
+        let jobPercent = 0;
+
+        let lotteryPercent = 0;
+
+        let upiPercent = 0;
+
+
+        if (categoryTotal > 0) {
+
+
+            bankingPercent =
+
+                Math.round(
+
+                    (banking / categoryTotal) * 100
+
+                );
+
+
+            jobPercent =
+
+                Math.round(
+
+                    (job / categoryTotal) * 100
+
+                );
+
+
+            lotteryPercent =
+
+                Math.round(
+
+                    (lottery / categoryTotal) * 100
+
+                );
+
+
+            upiPercent =
+
+                Math.round(
+
+                    (upi / categoryTotal) * 100
+
+                );
+
+        }
+
+
+        /* ==============================
+
+           UPDATE CATEGORY VALUES
+
+        ============================== */
+
+
+        document.getElementById(
+
+            "bankingValue"
+
+        ).textContent =
+
+            banking + " (" + bankingPercent + "%)";
+
+
+        document.getElementById(
+
+            "jobValue"
+
+        ).textContent =
+
+            job + " (" + jobPercent + "%)";
+
+
+        document.getElementById(
+
+            "lotteryValue"
+
+        ).textContent =
+
+            lottery + " (" + lotteryPercent + "%)";
+
+
+        document.getElementById(
+
+            "upiValue"
+
+        ).textContent =
+
+            upi + " (" + upiPercent + "%)";
+
+
+        /* ==============================
+
+           UPDATE CATEGORY BARS
+
+        ============================== */
+
+
+        document.getElementById(
+
+            "bankingBar"
+
+        ).style.width =
+
+            bankingPercent + "%";
+
+
+        document.getElementById(
+
+            "jobBar"
+
+        ).style.width =
+
+            jobPercent + "%";
+
+
+        document.getElementById(
+
+            "lotteryBar"
+
+        ).style.width =
+
+            lotteryPercent + "%";
+
+
+        document.getElementById(
+
+            "upiBar"
+
+        ).style.width =
+
+            upiPercent + "%";
+
+
+        /* ==============================
+
+           STAT CARDS
+
+        ============================== */
+
+
+        document.getElementById(
+
+            "messageCount"
+
+        ).textContent = messages;
+
+
+        document.getElementById(
+
+            "linkCount"
+
+        ).textContent = links;
+
+
+        document.getElementById(
+
+            "reportCount"
+
+        ).textContent = reports;
+
+
+        document.getElementById(
+
+            "alertCount"
+
+        ).textContent = alerts;
+
+
+        /* ==============================
+
+           SAFETY STATUS
+
+        ============================== */
+
+
+        const statusBadge =
+
+            document.getElementById(
+
+                "statusBadge"
+
+            );
+
+
+        const statusText =
+
+            document.getElementById(
+
+                "statusText"
+
+            );
+
+
+        if (alerts > 0) {
+
+
+            statusBadge.textContent =
+
+                "⚠ Attention Needed";
+
+
+            statusBadge.style.background =
+
+                "#fef3c7";
+
+
+            statusBadge.style.color =
+
+                "#92400e";
+
+
+            statusText.textContent =
+
+                alerts +
+
+                " safety alert" +
+
+                (alerts === 1 ? "" : "s") +
+
+                " detected in your recent activity. Review flagged results carefully.";
+
+        }
+
+
+        else {
+
+
+            statusBadge.textContent =
+
+                "✓ No Alerts";
+
+
+            statusBadge.style.background =
+
+                "#dcfce7";
+
+
+            statusBadge.style.color =
+
+                "#166534";
+
+
+            statusText.textContent =
+
+                "No suspicious activity has triggered an alert yet.";
+
+        }
+
+
+        /* ==============================
+
+           DETECTION CHART
+
+        ============================== */
+
+
+        document.getElementById(
+
+            "chartMessageValue"
+
+        ).textContent = messages;
+
+
+        document.getElementById(
+
+            "chartLinkValue"
+
+        ).textContent = links;
+
+
+        document.getElementById(
+
+            "chartReportValue"
+
+        ).textContent = reports;
+
+
+        document.getElementById(
+
+            "chartAlertValue"
+
+        ).textContent = alerts;
+
+
+        const chartMax = Math.max(
+
+            messages,
+
+            links,
+
+            reports,
+
+            alerts,
+
+            1
+
+        );
+
+
+        document.getElementById(
+
+            "chartMessageBar"
+
+        ).style.height =
+
+            Math.max(
+
+                (messages / chartMax) * 170,
+
+                5
+
+            ) + "px";
+
+
+        document.getElementById(
+
+            "chartLinkBar"
+
+        ).style.height =
+
+            Math.max(
+
+                (links / chartMax) * 170,
+
+                5
+
+            ) + "px";
+
+
+        document.getElementById(
+
+            "chartReportBar"
+
+        ).style.height =
+
+            Math.max(
+
+                (reports / chartMax) * 170,
+
+                5
+
+            ) + "px";
+
+
+        document.getElementById(
+
+            "chartAlertBar"
+
+        ).style.height =
+
+            Math.max(
+
+                (alerts / chartMax) * 170,
+
+                5
+
+            ) + "px";
+
+
+        /* ==============================
+
+           RISK CALCULATION
+
+        ============================== */
+
+
+        const alertRate =
+
+            messages > 0
+
+                ? Math.round(
+
+                    (alerts / messages) * 100
+
+                  )
+
+                : 0;
+
+
+        document.getElementById(
+
+            "riskPercentage"
+
+        ).textContent =
+
+            alertRate + "%";
+
+
+        /* ==============================
+
+           RISK CIRCLE
+
+        ============================== */
+
+
+        const angle =
+
+            Math.min(
+
+                alertRate,
+
+                100
+
+            ) * 3.6;
+
+
+        document.getElementById(
+
+            "riskCircle"
+
+        ).style.background =
+
+            `conic-gradient(
+
+                #f59e0b 0deg,
+
+                #f59e0b ${angle}deg,
+
+                #e2e8f0 ${angle}deg,
+
+                #e2e8f0 360deg
+
+            )`;
+
+
+        /* ==============================
+
+           RISK LEVELS
+
+        ============================== */
+
+
+        const safeChecks = Math.max(
+
+            messages - alerts,
+
+            0
+
+        );
+
+
+        document.getElementById(
+
+            "highRisk"
+
+        ).textContent = alerts;
+
+
+        document.getElementById(
+
+            "mediumRisk"
+
+        ).textContent = 0;
+
+
+        document.getElementById(
+
+            "lowRisk"
+
+        ).textContent = safeChecks;
+
+
+        /* ==============================
+
+           SUMMARY
+
+        ============================== */
+
+
+        const totalChecks =
+
+            messages +
+
+            links;
+
+
+        document.getElementById(
+
+            "totalChecks"
+
+        ).textContent = totalChecks;
+
+
+        document.getElementById(
+
+            "summaryAlertRate"
+
+        ).textContent =
+
+            alertRate + "%";
+
+
+        document.getElementById(
+
+            "summaryReports"
+
+        ).textContent = reports;
+
+
+        /* ==============================
+
+           MOST USED METHOD
+
+        ============================== */
+
+
+        let mostUsed = "—";
+
+
+        if (
+
+            messages === 0 &&
+
+            links === 0
+
+        ) {
+
+            mostUsed = "No activity";
+
+        }
+
+        else if (messages >= links) {
+
+            mostUsed = "🔍 Message Detection";
+
+        }
+
+        else {
+
+            mostUsed = "🔗 Link Detection";
+
+        }
+
+
+        document.getElementById(
+
+            "mostUsed"
+
+        ).textContent = mostUsed;
+
+
+        /* ==============================
+
+           ACTIVITY
+
+        ============================== */
+
+
+        loadActivity(
+
+            data.activity || []
+
+        );
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+
+            "Dashboard loading error:",
+
+            error
+
+        );
+
+
+        document.getElementById(
+
+            "statusText"
+
+        ).textContent =
+
+            "Unable to load dashboard data. Please try again.";
+
+
+    }
+
+}
+
+
+
+/* ==========================================================
+
+   LOAD RECENT ACTIVITY
+
+   ========================================================== */
+
+
+function loadActivity(activity) {
+
+
+    const container =
+
+        document.getElementById(
+
+            "activityList"
+
+        );
+
+
+    if (
+
+        !activity ||
+
+        activity.length === 0
+
+    ) {
+
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                No activity yet.<br>
+
+                Start by checking a suspicious message or link.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    activity
+
+        .slice(-7)
+
+        .reverse()
+
+        .forEach(item => {
+
+
+            const div =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+            div.className =
+
+                "activity-item";
+
+
+            const left =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+            left.className =
+
+                "activity-left";
+
+
+            const icon =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+            icon.className =
+
+                "activity-icon";
+
+
+            const type =
+
+                item.type || "";
+
+
+            if (
+
+                type.includes("Link")
+
+            ) {
+
+                icon.textContent = "🔗";
+
+            }
+
+            else if (
+
+                type.includes("Scam")
+
+            ) {
+
+                icon.textContent = "🚩";
+
+            }
+
+            else if (
+
+                type.includes("Translation")
+
+            ) {
+
+                icon.textContent = "🌐";
+
+            }
+
+            else {
+
+                icon.textContent = "🔍";
+
+            }
+
+
+            const name =
+
+                document.createElement(
+
+                    "span"
+
+                );
+
+
+            name.className =
+
+                "activity-name";
+
+
+            name.textContent =
+
+                type || "Activity";
+
+
+            left.appendChild(icon);
+
+            left.appendChild(name);
+
+
+            const time =
+
+                document.createElement(
+
+                    "span"
+
+                );
+
+
+            time.className =
+
+                "activity-time";
+
+
+            time.textContent =
+
+                item.time || "";
+
+
+            div.appendChild(left);
+
+            div.appendChild(time);
+
+
+            container.appendChild(div);
+
+        });
+
+}
+
+
+
+/* ==========================================================
+
+   INITIAL LOAD
+
+   ========================================================== */
+
+
+loadDashboard();
+
+
+
+/* ==========================================================
+
+   AUTO REFRESH
+
+   ========================================================== */
+
+
+setInterval(
+
+    loadDashboard,
+
+    5000
+
+);
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1089 @@
+<!DOCTYPE html>    
+    
+<html lang="en">    
+    
+<head>    
+    
+    <meta charset="UTF-8">    
+    
+    <meta name="viewport"    
+          content="width=device-width, initial-scale=1.0">    
+    
+    <title>    
+        TrustLens AI | Analysis Result    
+    </title>    
+    
+    
+    <style>    
+    
+        * {    
+            margin: 0;    
+            padding: 0;    
+            box-sizing: border-box;    
+            font-family: "Segoe UI", Arial, sans-serif;    
+        }    
+    
+    
+        body {    
+    
+            min-height: 100vh;    
+    
+            background: #eef5ff;    
+    
+            color: #172554;    
+        }    
+    
+    
+        /* ================= NAVBAR ================= */    
+    
+        header {    
+    
+            min-height: 72px;    
+    
+            padding: 12px 7%;    
+    
+            display: flex;    
+    
+            align-items: center;    
+    
+            justify-content: space-between;    
+    
+            background: #ffffff;    
+    
+            border-bottom: 1px solid #dbeafe;    
+    
+            box-shadow:    
+                0 2px 12px rgba(30, 64, 175, 0.08);    
+        }    
+    
+    
+        .logo {    
+    
+            display: flex;    
+    
+            align-items: center;    
+    
+            gap: 10px;    
+    
+            font-size: 21px;    
+    
+            font-weight: 700;    
+    
+            color: #172554;    
+        }    
+    
+    
+        .logo-icon {    
+    
+            width: 40px;    
+    
+            height: 40px;    
+    
+            display: flex;    
+    
+            align-items: center;    
+    
+            justify-content: center;    
+    
+            border-radius: 11px;    
+    
+            background: #2563eb;    
+    
+            color: white;    
+    
+            font-size: 20px;    
+        }    
+    
+    
+        .logo span {    
+    
+            color: #2563eb;    
+    
+        }    
+    
+    
+        nav {    
+    
+            display: flex;    
+    
+            gap: 20px;    
+    
+            align-items: center;    
+    
+            flex-wrap: wrap;    
+    
+            justify-content: flex-end;    
+        }    
+    
+    
+        nav a {    
+    
+            color: #475569;    
+    
+            text-decoration: none;    
+    
+            font-size: 14px;    
+    
+            font-weight: 600;    
+    
+        }    
+    
+    
+        nav a:hover {    
+    
+            color: #2563eb;    
+    
+        }    
+    
+    
+        /* ================= MAIN ================= */    
+    
+        .container {    
+    
+            width: 88%;    
+    
+            max-width: 850px;    
+    
+            margin: 50px auto;    
+    
+        }    
+    
+    
+        /* ================= CARD ================= */    
+    
+        .card {    
+    
+            background: #ffffff;    
+    
+            padding: 35px;    
+    
+            border-radius: 20px;    
+    
+            border: 1px solid #dbeafe;    
+    
+            box-shadow:    
+                0 8px 30px rgba(37, 99, 235, 0.08);    
+    
+            margin-bottom: 25px;    
+    
+        }    
+    
+    
+        /* ================= RESULT ================= */    
+    
+        .probability {    
+    
+            text-align: center;    
+    
+        }    
+    
+    
+        .probability h1 {    
+    
+            color: #172554;    
+    
+            font-size: 40px;    
+    
+            margin-bottom: 8px;    
+    
+        }    
+    
+    
+        .probability p {    
+    
+            color: #64748b;    
+    
+            font-size: 18px;    
+    
+        }    
+    
+    
+        /* ================= PROBABILITY ================= */    
+    
+        .number {    
+    
+            font-size: 65px;    
+    
+            font-weight: 800;    
+    
+            color: #2563eb;    
+    
+            margin: 15px 0 20px;    
+    
+        }    
+    
+    
+        /* ================= STATUS ================= */    
+    
+        .status {    
+    
+            display: inline-block;    
+    
+            padding: 11px 28px;    
+    
+            border-radius: 30px;    
+    
+            font-weight: 700;    
+    
+            font-size: 17px;    
+    
+        }    
+    
+    
+        .status.safe {    
+    
+            background: #dcfce7;    
+    
+            color: #15803d;    
+    
+            border: 1px solid #bbf7d0;    
+    
+        }    
+    
+    
+        .status.scam {    
+    
+            background: #fee2e2;    
+    
+            color: #dc2626;    
+    
+            border: 1px solid #fecaca;    
+    
+        }    
+    
+    
+        /* ================= INFO ================= */    
+    
+        .info {    
+    
+            display: grid;    
+    
+            grid-template-columns:    
+                repeat(3, 1fr);    
+    
+            gap: 15px;    
+    
+        }    
+    
+    
+        .box {    
+    
+            background: #eff6ff;    
+    
+            border: 1px solid #dbeafe;    
+    
+            padding: 22px;    
+    
+            border-radius: 15px;    
+    
+            text-align: center;    
+    
+        }    
+    
+    
+        .box h3 {    
+    
+            color: #1e3a8a;    
+    
+            font-size: 18px;    
+    
+        }    
+    
+    
+        .box p {    
+    
+            color: #64748b;    
+    
+            margin-top: 10px;    
+    
+            font-size: 17px;    
+    
+            font-weight: 600;    
+    
+        }    
+    
+    
+        /* ================= HEADINGS ================= */    
+    
+        .card h2 {    
+    
+            color: #172554;    
+    
+            font-size: 27px;    
+    
+            margin-bottom: 18px;    
+    
+        }    
+    
+    
+        /* ================= LISTS ================= */    
+    
+        ul {    
+    
+            padding-left: 25px;    
+    
+        }    
+    
+    
+        li {    
+    
+            margin-bottom: 13px;    
+    
+            color: #475569;    
+    
+            font-size: 16px;    
+    
+            line-height: 1.5;    
+    
+        }    
+    
+    
+        /* ================= SELECTED LANGUAGE ================= */    
+    
+        .translated-to {    
+    
+            text-align: center;    
+    
+            color: #64748b;    
+    
+            font-size: 14px;    
+    
+            margin-top: 15px;    
+    
+        }    
+    
+    
+        .translated-to strong {    
+    
+            color: #2563eb;    
+    
+        }    
+    
+    
+        /* ================= AUDIO RESULT ================= */    
+    
+        .audio-section {    
+    
+            text-align: center;    
+    
+        }    
+    
+    
+        .audio-section h2 {    
+    
+            margin-bottom: 10px;    
+    
+        }    
+    
+    
+        .audio-section p {    
+    
+            color: #64748b;    
+    
+            margin-bottom: 20px;    
+    
+            font-size: 14px;    
+    
+        }    
+    
+    
+        .audio-player {    
+    
+            width: 100%;    
+    
+            margin-top: 10px;    
+    
+        }    
+    
+    
+        /* ================= BUTTON ================= */    
+    
+        .button {    
+    
+            display: inline-block;    
+    
+            padding: 14px 24px;    
+    
+            background: #2563eb;    
+    
+            color: white;    
+    
+            text-decoration: none;    
+    
+            border-radius: 11px;    
+    
+            font-weight: 600;    
+    
+            font-size: 16px;    
+    
+        }    
+    
+    
+        .button:hover {    
+    
+            background: #1d4ed8;    
+    
+        }    
+    
+    
+        /* ================= MOBILE ================= */    
+    
+        @media (max-width: 900px) {    
+    
+            header {    
+    
+                flex-direction: column;    
+    
+                gap: 15px;    
+    
+            }    
+    
+    
+            nav {    
+    
+                justify-content: center;    
+    
+            }    
+    
+        }    
+    
+    
+        @media (max-width: 700px) {    
+    
+            .info {    
+    
+                grid-template-columns: 1fr;    
+    
+            }    
+    
+    
+            .probability h1 {    
+    
+                font-size: 30px;    
+    
+            }    
+    
+    
+            .number {    
+    
+                font-size: 50px;    
+    
+            }    
+    
+    
+            nav {    
+    
+                gap: 12px;    
+    
+            }    
+    
+    
+            nav a {    
+    
+                font-size: 13px;    
+    
+            }    
+    
+        }    
+    
+    </style>    
+    
+</head>    
+    
+    
+<body>    
+    
+    
+<!-- ================= NAVBAR ================= -->    
+    
+<header>    
+    
+    
+    <div class="logo">    
+    
+        <div class="logo-icon">   
+            🛡️   
+        </div>    
+    
+        <div>   
+            Trust<span>Lens</span> AI   
+        </div>    
+    
+    </div>    
+    
+    
+    <nav>    
+    
+        <a href="/">Home</a>    
+    
+        <a href="/dashboard">Dashboard</a>    
+    
+        <a href="/about">About</a>    
+    
+        <a href="/awareness">Scam Awareness</a>    
+    
+        <a href="/link-check">Fake Link Detection</a>    
+    
+        <a href="/translator">Translator</a>    
+    
+        <a href="/report">Report Scam</a>    
+    
+        <a href="/contact">Contact</a>    
+    
+    </nav>    
+    
+    
+</header>    
+    
+    
+<!-- ================= MAIN ================= -->    
+    
+<div class="container">    
+    
+    
+    <!-- ================= RESULT ================= -->    
+    
+    <div class="card probability">    
+    
+    
+        <h1>    
+    
+            🔍    
+    
+            {% if target_language == "Hindi" %}    
+    
+                विश्लेषण परिणाम    
+    
+            {% elif target_language == "Marathi" %}    
+    
+                विश्लेषण परिणाम    
+    
+            {% else %}    
+    
+                Analysis Result    
+    
+            {% endif %}    
+    
+        </h1>    
+    
+    
+        <p>    
+    
+            {% if target_language == "Hindi" %}    
+    
+                AI घोटाला संभावना    
+    
+            {% elif target_language == "Marathi" %}    
+    
+                AI फसवणूक संभाव्यता    
+    
+            {% else %}    
+    
+                AI Scam Probability    
+    
+            {% endif %}    
+    
+        </p>    
+    
+    
+        <div class="number">    
+    
+            {{ translated_probability }}%    
+    
+        </div>    
+    
+    
+        <!-- ================= STATUS ================= -->    
+    
+        {% if translated_status|trim in [    
+            "Scam",    
+            "घोटाला",    
+            "घोटाळा",    
+            "फसवणूक"    
+        ] %}    
+    
+    
+            <div class="status scam">    
+    
+                🚨 {{ translated_status }}    
+    
+            </div>    
+    
+    
+        {% else %}    
+    
+    
+            <div class="status safe">    
+    
+                🛡️ {{ translated_status }}    
+    
+            </div>    
+    
+    
+        {% endif %}    
+    
+    
+        <div class="translated-to">    
+    
+            {% if target_language == "Hindi" %}    
+    
+                परिणाम भाषा:    
+    
+            {% elif target_language == "Marathi" %}    
+    
+                परिणाम भाषा:    
+    
+            {% else %}    
+    
+                Result Language:    
+    
+            {% endif %}    
+    
+            <strong>    
+                {{ target_language }}    
+            </strong>    
+    
+        </div>    
+    
+    
+    </div>    
+    
+    
+    <!-- ================= INFORMATION ================= -->    
+    
+    <div class="card">    
+    
+    
+        <div class="info">    
+    
+    
+            <!-- RISK -->    
+    
+            <div class="box">    
+    
+                <h3>    
+    
+                    {% if target_language == "Hindi" %}    
+    
+                        ⚠️ जोखिम स्तर    
+    
+                    {% elif target_language == "Marathi" %}    
+    
+                        ⚠️ जोखीम पातळी    
+    
+                    {% else %}    
+    
+                        ⚠️ Risk Level    
+    
+                    {% endif %}    
+    
+                </h3>    
+    
+    
+                <p>    
+    
+                    {{ translated_risk }}    
+    
+                </p>    
+    
+            </div>    
+    
+    
+            <!-- LANGUAGE -->    
+    
+            <div class="box">    
+    
+                <h3>    
+    
+                    {% if target_language == "Hindi" %}    
+    
+                        🌐 भाषा    
+    
+                    {% elif target_language == "Marathi" %}    
+    
+                        🌐 भाषा    
+    
+                    {% else %}    
+    
+                        🌐 Language    
+    
+                    {% endif %}    
+    
+                </h3>    
+    
+    
+                <p>    
+    
+                    {{ language }}    
+    
+                </p>    
+    
+            </div>    
+    
+    
+            <!-- STATUS -->    
+    
+            <div class="box">    
+    
+                <h3>    
+    
+                    {% if target_language == "Hindi" %}    
+    
+                        🔎 स्थिति    
+    
+                    {% elif target_language == "Marathi" %}    
+    
+                        🔎 स्थिती    
+    
+                    {% else %}    
+    
+                        🔎 Status    
+    
+                    {% endif %}    
+    
+                </h3>    
+    
+    
+                <p>    
+    
+                    {{ translated_status }}    
+    
+                </p>    
+    
+            </div>    
+    
+    
+        </div>    
+    
+    
+    </div>    
+    
+    
+    <!-- =====================================================    
+         SCAM TYPE    
+         ===================================================== -->    
+    
+    <div class="card">    
+    
+        <h2>    
+    
+            {% if target_language == "Hindi" %}    
+    
+                🎯 स्कैम का प्रकार    
+    
+            {% elif target_language == "Marathi" %}    
+    
+                🎯 फसवणुकीचा प्रकार    
+    
+            {% else %}    
+    
+                🎯 Scam Type    
+    
+            {% endif %}    
+    
+        </h2>    
+    
+    
+        <div class="box">    
+    
+            <p style="font-size: 20px;">    
+    
+                {% if scam_category == "Bank / UPI" %}    
+    
+                    🏦 Bank / UPI    
+    
+                {% elif scam_category == "Job / Internship" %}    
+    
+                    💼 Job / Internship    
+    
+                {% elif scam_category == "Lottery / Prize" %}    
+    
+                    🎁 Lottery / Prize    
+    
+                {% elif scam_category == "KYC / Account" %}    
+    
+                    🪪 KYC / Account    
+    
+                {% elif scam_category == "Phishing" %}    
+    
+                    🔗 Phishing    
+    
+                {% elif scam_category == "Investment" %}    
+    
+                    📈 Investment    
+    
+                {% elif scam_category == "Shopping / Delivery" %}    
+    
+                    📦 Shopping / Delivery    
+    
+                {% elif scam_category == "Social Media" %}    
+    
+                    📱 Social Media    
+    
+                {% else %}    
+    
+                    📌 Other    
+    
+                {% endif %}    
+    
+            </p>    
+    
+        </div>    
+    
+    </div>    
+    
+    
+    <!-- ================= REASONS ================= -->    
+    
+    <div class="card">    
+    
+    
+        <h2>    
+    
+            {% if target_language == "Hindi" %}    
+    
+                🔍 यह परिणाम क्यों दिया गया?    
+    
+            {% elif target_language == "Marathi" %}    
+    
+                🔍 हा निकाल का देण्यात आला?    
+    
+            {% else %}    
+    
+                🔍 Why was this result given?    
+    
+            {% endif %}    
+    
+        </h2>    
+    
+    
+        <ul>    
+    
+            {% for reason in translated_reasons %}    
+    
+                <li>    
+    
+                    {{ reason }}    
+    
+                </li>    
+    
+            {% endfor %}    
+    
+        </ul>    
+    
+    
+    </div>    
+    
+    
+    <!-- ================= SAFETY TIPS ================= -->    
+    
+    <div class="card">    
+    
+    
+        <h2>    
+    
+            {% if target_language == "Hindi" %}    
+    
+                🛡️ सुरक्षा सुझाव    
+    
+            {% elif target_language == "Marathi" %}    
+    
+                🛡️ सुरक्षा टिप्स    
+    
+            {% else %}    
+    
+                🛡️ Safety Tips    
+    
+            {% endif %}    
+    
+        </h2>    
+    
+    
+        <ul>    
+    
+            {% for tip in translated_tips %}    
+    
+                <li>    
+    
+                    {{ tip }}    
+    
+                </li>    
+    
+            {% endfor %}    
+    
+        </ul>    
+    
+    
+    </div>    
+    
+    
+    <!-- =====================================================    
+         AUDIO RESULT - SHOWN ONLY FOR SCAM    
+         ===================================================== -->    
+    
+    {% if audio_result and (    
+        translated_status|trim in [    
+            "Scam",    
+            "घोटाला",    
+            "घोटाळा",    
+            "फसवणूक",    
+            "Spam",    
+            "स्पैम",    
+            "Unsafe",    
+            "असुरक्षित",    
+            "Suspicious",    
+            "संशयास्पद"    
+        ]    
+    ) %}    
+    
+    <div class="card audio-section">    
+    
+        <h2>    
+    
+            🔊    
+    
+            {% if target_language == "Hindi" %}    
+    
+                🚨 स्कैम चेतावनी ऑडियो    
+    
+            {% elif target_language == "Marathi" %}    
+    
+                🚨 फसवणूक चेतावणी ऑडिओ    
+    
+            {% else %}    
+    
+                🚨 Scam Warning Audio    
+    
+            {% endif %}    
+    
+        </h2>    
+    
+    
+        <p>    
+    
+            {% if target_language == "Hindi" %}    
+    
+                यह संदेश स्कैम के रूप में पहचाना गया है।    
+                AI सुरक्षा विश्लेषण सुनने के लिए नीचे दिए गए प्ले बटन का उपयोग करें।    
+    
+            {% elif target_language == "Marathi" %}    
+    
+                हा संदेश फसवणूक म्हणून ओळखला गेला आहे.    
+                AI सुरक्षा विश्लेषण ऐकण्यासाठी खालील प्ले बटण वापरा.    
+    
+            {% else %}    
+    
+                This message has been detected as a scam.    
+                Listen to the AI security analysis using the player below.    
+    
+            {% endif %}    
+    
+        </p>    
+    
+    
+        <audio    
+            class="audio-player"    
+            controls    
+        >    
+    
+            <source    
+                src="{{ url_for('serve_audio', filename=audio_result) }}"    
+                type="audio/mpeg"    
+            >    
+    
+            Your browser does not support audio playback.    
+    
+        </audio>    
+    
+    
+    </div>    
+    
+    {% endif %}    
+    
+    
+    <!-- ================= CHECK AGAIN ================= -->    
+    
+    <div class="card">    
+    
+    
+        <a href="/" class="button">    
+    
+            {% if target_language == "Hindi" %}    
+    
+                🔄 दूसरा संदेश जांचें    
+    
+            {% elif target_language == "Marathi" %}    
+    
+                🔄 दुसरा संदेश तपासा    
+    
+            {% else %}    
+    
+                🔄 Check Another Message    
+    
+            {% endif %}    
+    
+        </a>    
+    
+    </div>    
+    
+    
+</div>    
+    
+    
+<!-- =====================================================
+     🚨 SCAM ALERT SOUND
+     PLAYS ONLY WHEN SCAM IS DETECTED
+     ===================================================== -->
+
+{% if is_scam and alert_sound %}
+
+<audio
+    id="scamAlertSound"
+    class="audio-player"
+    preload="auto"
+    controls
+>
+
+    <source
+        src="{{ url_for('static', filename=alert_sound) }}"
+        type="audio/mpeg"
+    >
+
+    Your browser does not support audio playback.
+
+</audio>
+
+<script>
+
+    window.addEventListener("load", function () {
+
+        const alertSound = document.getElementById(
+            "scamAlertSound"
+        );
+
+        if (alertSound) {
+
+            alertSound.volume = 1.0;
+
+            alertSound.play().catch(function (error) {
+
+                console.log(
+                    "Automatic scam alert sound was blocked by the browser. "
+                    + "Press the Play button.",
+                    error
+                );
+
+            });
+
+        }
+
+    });
+
+</script>
+
+{% endif %}
+
+
+</body>    
+    
+</html>

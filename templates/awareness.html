@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scam Awareness - TrustLens AI</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #eef5ff;
+            color: #172554;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            min-height: 72px;
+            padding: 12px 7%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #dbeafe;
+
+            box-shadow: 0 2px 12px rgba(30, 64, 175, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 21px;
+            font-weight: 700;
+
+            color: #172554;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 20px;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            color: #475569;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        /* ================= TITLE ================= */
+
+        .title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .title h1 {
+            color: #1d4ed8;
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .title p {
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.6;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        /* ================= AWARENESS CARDS ================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #dbeafe;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.07);
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+        }
+
+        .icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            color: #1d4ed8;
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .warning {
+            margin-top: 18px;
+            padding: 12px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            color: #9a3412;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* ================= SAFETY SECTION ================= */
+
+        .safety {
+            margin-top: 50px;
+            background: white;
+            padding: 35px;
+            border-radius: 22px;
+            border: 1px solid #dbeafe;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.07);
+        }
+
+        .safety h2 {
+            text-align: center;
+            color: #1d4ed8;
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .tips {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .tip {
+            background: #f8fbff;
+            border: 1px solid #dbeafe;
+            padding: 17px;
+            border-radius: 12px;
+            color: #334155;
+            line-height: 1.5;
+        }
+
+        /* ================= CALL TO ACTION ================= */
+
+        .cta {
+            margin-top: 45px;
+            text-align: center;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .cta h2 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+
+        .cta p {
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 25px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .tips {
+                grid-template-columns: 1fr;
+            }
+
+            .title h1 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🛡️
+        </div>
+
+        <div>
+            Trust<span>Lens</span> AI
+        </div>
+
+    </div>
+
+    <nav>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+        <a href="/awareness">
+            Scam Awareness
+        </a>
+
+        <a href="/link-check">
+            Fake Link Detection
+        </a>
+
+        <a href="/report">
+            Report Scam
+        </a>
+
+        <a href="/contact">
+            Contact
+        </a>
+
+        
+
+    </nav>
+
+</header>
+
+<!-- ================= MAIN CONTAINER ================= -->
+
+<div class="container">
+
+    <!-- TITLE -->
+
+    <div class="title">
+
+        <h1>🛡️ Scam Awareness</h1>
+
+        <p>
+            Learn how common digital scams work and discover
+            simple ways to protect yourself from online fraud.
+        </p>
+
+    </div>
+
+    <!-- ================= SCAM CARDS ================= -->
+
+    <div class="cards">
+
+        <!-- BANKING -->
+
+        <div class="card">
+
+            <div class="icon">🏦</div>
+
+            <h2>Banking Scams</h2>
+
+            <p>
+                Scammers may pretend to be from a bank and
+                claim that your account is blocked or needs
+                verification.
+            </p>
+
+            <div class="warning">
+                ⚠️ Never share your banking password,
+                PIN or OTP.
+            </div>
+
+        </div>
+
+        <!-- UPI -->
+
+        <div class="card">
+
+            <div class="icon">📱</div>
+
+            <h2>UPI & Payment Scams</h2>
+
+            <p>
+                Fraudsters may send fake payment requests
+                or pretend that you need to scan a QR code
+                to receive money.
+            </p>
+
+            <div class="warning">
+                ⚠️ Remember: receiving money does not
+                require entering your UPI PIN.
+            </div>
+
+        </div>
+
+        <!-- OTP -->
+
+        <div class="card">
+
+            <div class="icon">🔐</div>
+
+            <h2>OTP Scams</h2>
+
+            <p>
+                Scammers may pretend to be customer support
+                and ask for an OTP to "verify" your account.
+            </p>
+
+            <div class="warning">
+                ⚠️ Never share an OTP with anyone.
+            </div>
+
+        </div>
+
+        <!-- KYC -->
+
+        <div class="card">
+
+            <div class="icon">🪪</div>
+
+            <h2>KYC Scams</h2>
+
+            <p>
+                Fake messages may claim that your KYC has
+                expired and ask you to click a link or provide
+                personal information.
+            </p>
+
+            <div class="warning">
+                ⚠️ Verify KYC requests through the official
+                bank or service website.
+            </div>
+
+        </div>
+
+        <!-- JOB -->
+
+        <div class="card">
+
+            <div class="icon">💼</div>
+
+            <h2>Fake Job Scams</h2>
+
+            <p>
+                Fake recruiters may promise easy jobs,
+                high salaries or work-from-home opportunities
+                and ask for money or personal information.
+            </p>
+
+            <div class="warning">
+                ⚠️ Be careful with jobs that demand
+                upfront payments.
+            </div>
+
+        </div>
+
+        <!-- PRIZE -->
+
+        <div class="card">
+
+            <div class="icon">🎁</div>
+
+            <h2>Prize & Lottery Scams</h2>
+
+            <p>
+                You may receive messages claiming that
+                you have won a prize even though you never
+                entered a contest.
+            </p>
+
+            <div class="warning">
+                ⚠️ Unexpected prizes and urgent payment
+                requests are major warning signs.
+            </div>
+
+        </div>
+
+        <!-- INVESTMENT -->
+
+        <div class="card">
+
+            <div class="icon">💰</div>
+
+            <h2>Investment Scams</h2>
+
+            <p>
+                Scammers may promise guaranteed profits,
+                unrealistic returns or secret investment
+                opportunities.
+            </p>
+
+            <div class="warning">
+                ⚠️ No legitimate investment can guarantee
+                unlimited profits.
+            </div>
+
+        </div>
+
+        <!-- PHISHING -->
+
+        <div class="card">
+
+            <div class="icon">🎣</div>
+
+            <h2>Phishing & Fake Links</h2>
+
+            <p>
+                Fake websites and messages may imitate
+                banks, shopping sites or other trusted
+                services to steal information.
+            </p>
+
+            <div class="warning">
+                ⚠️ Check links carefully before opening them.
+            </div>
+
+        </div>
+
+        <!-- SOCIAL MEDIA -->
+
+        <div class="card">
+
+            <div class="icon">📲</div>
+
+            <h2>Social Media Scams</h2>
+
+            <p>
+                Fake profiles, giveaway messages and
+                suspicious links can be used to trick users
+                into sharing information.
+            </p>
+
+            <div class="warning">
+                ⚠️ Don't trust unexpected messages from
+                unknown accounts.
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= SAFETY TIPS ================= -->
+
+    <div class="safety">
+
+        <h2>🛡️ Stay Safe Online</h2>
+
+        <div class="tips">
+
+            <div class="tip">
+                🔹 Never share OTPs, passwords or PINs.
+            </div>
+
+            <div class="tip">
+                🔹 Don't click suspicious links.
+            </div>
+
+            <div class="tip">
+                🔹 Verify messages through official websites
+                or phone numbers.
+            </div>
+
+            <div class="tip">
+                🔹 Don't send money because someone
+                creates urgency or fear.
+            </div>
+
+            <div class="tip">
+                🔹 Check the sender before trusting a message.
+            </div>
+
+            <div class="tip">
+                🔹 If something feels suspicious, stop and
+                verify before taking action.
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= CTA ================= -->
+
+    <div class="cta">
+
+        <h2>🔍 Received a Suspicious Message?</h2>
+
+        <p>
+            Let TrustLens AI analyze it and identify
+            potential scam indicators.
+        </p>
+
+        <a href="/" class="button">
+            Analyze a Message
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

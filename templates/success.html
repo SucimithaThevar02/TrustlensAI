@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Report Submitted - TrustLens AI</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #eef5ff;
+            color: #172554;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            min-height: 72px;
+            padding: 12px 7%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #dbeafe;
+
+            box-shadow:
+                0 2px 12px rgba(30, 64, 175, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 21px;
+            font-weight: 700;
+
+            color: #172554;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 20px;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            color: #475569;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        /* ================= CENTER CARD ================= */
+
+        .page {
+            min-height: calc(100vh - 72px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 550px;
+
+            text-align: center;
+
+            padding: 45px 30px;
+
+            background: #ffffff;
+
+            border: 1px solid #dbeafe;
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 10px 35px rgba(37, 99, 235, 0.10);
+        }
+
+        .icon {
+            width: 75px;
+            height: 75px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #dcfce7;
+
+            border: 1px solid #bbf7d0;
+
+            color: #16a34a;
+
+            font-size: 35px;
+        }
+
+        h1 {
+            margin-bottom: 12px;
+            color: #172554;
+        }
+
+        p {
+            color: #64748b;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 13px 25px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 11px;
+
+            font-weight: 600;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🛡️
+        </div>
+
+        <div>
+            Trust<span>Lens</span> AI
+        </div>
+
+    </div>
+
+    <nav>
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/about">
+            About
+        </a>
+
+        <a href="/awareness">
+            Scam Awareness
+        </a>
+
+        <a href="/link-check">
+            Fake Link Detection
+        </a>
+
+        <a href="/translator">
+            Translator
+        </a>
+
+        <a href="/report">
+            Report Scam
+        </a>
+
+        <a href="/contact">
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+<!-- ================= CONTENT ================= -->
+
+<div class="page">
+
+    <div class="card">
+
+        <div class="icon">
+            ✓
+        </div>
+
+        <h1>
+            Report Submitted
+        </h1>
+
+        <p>
+            Thank you for helping improve digital
+            scam awareness. Your report has been received.
+        </p>
+
+        <a href="/" class="button">
+            🔄 Back to TrustLens AI
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
