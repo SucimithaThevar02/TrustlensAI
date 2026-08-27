@@ -35,7 +35,7 @@ try:
 
     # Use a better model than "base" for improved recognition.
     # If your computer is slow, change this back to "base".
-    model = whisper.load_model("tiny")
+    model = whisper.load_model("small")
 
 
     print("Converting speech to text...")
